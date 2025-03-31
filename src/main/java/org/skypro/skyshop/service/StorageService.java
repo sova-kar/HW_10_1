@@ -19,9 +19,11 @@ public class StorageService {
     }
 
     private void fillTestData() {
+        final UUID canvasId = UUID.fromString("38a0a7b5-547b-43a0-99ea-96b62f60116d");
+        final UUID oilId = UUID.fromString("13b941fa-067a-4da4-a77c-3064be740d2e");
 
-        products.put(UUID.randomUUID(), new Product(UUID.randomUUID(), "Холст", 1200) {});
-        products.put(UUID.randomUUID(), new Product(UUID.randomUUID(), "Масло", 800) {});
+        products.put(canvasId, new Product(canvasId, "Холст", 1200) {});
+        products.put(oilId, new Product(oilId, "Масло", 800) {});
 
 
         articles.put(UUID.randomUUID(), new Article(UUID.randomUUID(), "Прачечная стирающая печали", "О жизни в моменте"));
@@ -41,5 +43,8 @@ public class StorageService {
         searchables.addAll(products.values());
         searchables.addAll(articles.values());
         return searchables;
+    }
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(products.get(id));
     }
 }
